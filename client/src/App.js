@@ -4,6 +4,7 @@ import NavBar from "./Components/NavBar"
 import HomePage from "./Components/HomePage"
 import Login from "./Components/Login"
 import Register from "./Components/Register"
+import Admin from './Components/Admin';
 
 
 function App() {
@@ -14,6 +15,9 @@ function App() {
       <Route exact path="/" element={<HomePage/>} />
       <Route exact path="/login" element={<Login/>} />
       <Route exact path="/register" element={<Register/>} />
+      <Route exact path="/admin" element={<Admin/>} />
+
+      
       </Routes>
     </div>
   );
