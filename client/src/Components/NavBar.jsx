@@ -35,6 +35,11 @@ function NavBar() {
                 Register
               </Link>
             </li>
+            <li className="nav-item">
+              <Link to="/admin" className="nav-link" aria-expanded="false">
+                Admin Panel
+              </Link>
+            </li>
           </ul>
         </div>
         <form className="d-flex ml-auto">

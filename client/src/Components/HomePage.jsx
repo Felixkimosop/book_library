@@ -5,7 +5,7 @@ function HomePage() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3688/books')
+    fetch('http://localhost:8001/books')
       .then(response => response.json())
       .then(data => setBooks(data))
       .catch(error => console.error(error));
