@@ -7,7 +7,7 @@ function Admin() {
     const [image_url, setImage] = useState()
     const [description, setDescription] = useState()
 useEffect(()=>{
-fetch (" http://localhost:8001/books")
+fetch (" http://localhost:3689/books")
 .then(res => res.json())
 .then(data => setBooks(data))
 },[])
@@ -51,12 +51,12 @@ function handleClick(id){
       <div className="admin_header">
         <h1>Admin Panel</h1>
       </div>
-      <div className="admin_body">
+      <div className=" row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" style={{display:"flex", justifyContent: "space-around", alignItems: "center", paddingTop:"10px"}}>
       {books?.map(book => (
-        <div className=" book_card " key={book.id} >
+        <div className="  card col-12 col-sm-6 col-md-4" key={book.id} style={{width:"250px"}} >
           <div className="card ">
             <img src={book.image_url}  alt={book.title} />
-           <p>{book.description}</p>
+          
              <button className="btn btn-primary" onClick={() => handleClick(book.id)}> Delete From Library</button> 
           </div>
         
