@@ -1,11 +1,8 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from 'react-router-dom';
+import React, {  useState } from "react";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -32,7 +29,7 @@ export default function Login() {
           window.localStorage.setItem("token", data.data);
           window.localStorage.setItem("loggedIn", true);
 
-          navigate("/"); // useNavigate to navigate to home page
+          window.location.href = "./userDetails";
         }
       });
   }
@@ -82,7 +79,7 @@ export default function Login() {
             </button>
           </div>
           <p className="forgot-password text-right">
-            <Link to="/register">Sign Up</Link>
+            <a href="/sign-up">Sign Up</a>
           </p>
         </form>
       </div>

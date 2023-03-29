@@ -1,9 +1,11 @@
 import {Link,  useNavigate } from 'react-router-dom';
 import HomePageDetails from './HomePageDetails';
+import { useState, useEffect } from 'react';
+
 
 function HomePage() {
   const navigate = useNavigate();
-
+  const [books, setBooks] = useState([]);
 
   useEffect(() => {
     fetch('http://localhost:3689/books')
