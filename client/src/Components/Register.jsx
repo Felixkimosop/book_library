@@ -21,7 +21,7 @@ export default function Register() {
       alert("Invalid Admin");
     } else {
       console.log(fname, lname, email, password);
-      fetch("", {
+      fetch("http://localhost:8978/users", {
         method: "POST",
         crossDomain: true,
         headers: {
@@ -37,17 +37,14 @@ export default function Register() {
           userType,
         }),
       })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data, "userRegister");
-          if (data.status === "ok") {
-            // Redirect to login page after successful registration
-            navigate("/login");
-            alert("Registration Successful");
-          } else {
-            alert("Something went wrong");
-          }
-        });
+      .then(response => {
+        if (response.ok) {
+          navigate("/login");
+        } else {
+          // Handle error response
+        }
+      })
+      .catch(error => console.log(error));
     }
   };
 
