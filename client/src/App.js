@@ -4,7 +4,7 @@ import NavBar from "./Components/NavBar"
 import BookCollection from "./Components/BookCollection"
 import Login from "./Components/Login"
 import Register from "./Components/Register"
-
+import User from "./Components/User"
 import Admin from './Components/Admin';
 
 import BookDetails from "./Components/BookDetails"
@@ -21,11 +21,11 @@ function App() {
       <Route exact path="/home" element={<BookCollection/>} />
       <Route exact path="/login" element={<Login/>} />
       <Route exact path="/register" element={<Register/>} />
-
+      <Route path="/user" element={<User/>}/>
       <Route exact path="/admin" element={<Admin/>} />
 
       
-=======
+
       <Route path="/home/:homeId" element={<BookDetails />} />
 
 
