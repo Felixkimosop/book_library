@@ -4,14 +4,14 @@
   height: 300px;
 }
 .slantedShare{
-  background-color: rgb(41,55,70);
+  background-color: rgb(184, 188, 192);
   color: white;
   position: relative;
   width:100%;
   padding: 10px 30px 10px 10px;
 }
 .slantedShare::after {
-  background: rgb(41,55,70);
+  background: rgb(208, 212, 217);
   content: " ";
   position: absolute;
   display: block;

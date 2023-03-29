@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 import "../Register.css";
 
 export default function Register() {
-  const [fname, setFname] = useState("");
-  const [lname, setLname] = useState("");
+  
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [password_digest, setPassword] = useState("");
   const [userType, setUserType] = useState("");
   const [secretKey, setSecretKey] = useState("");
 
@@ -16,37 +16,74 @@ export default function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (userType === "Admin" && secretKey !== "mamboImechemka") {
-      alert("Invalid Admin");
+  
+    let url;
+    if (userType === "Admin") {
+      if (secretKey !== "mamboImechemka") {
+        alert("Invalid Admin");
+        return;
+      }
+      url = "/admins";
     } else {
-      console.log(fname, lname, email, password);
-      fetch("http://localhost:8978/users", {
-        method: "POST",
-        crossDomain: true,
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify({
-          fname,
-          email,
-          lname,
-          password,
-          userType,
-        }),
-      })
-      .then(response => {
+      url = "/users";
+    }
+  
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        password_digest,
+        userType,
+      }),
+    })
+      .then((response) => {
         if (response.ok) {
           navigate("/login");
         } else {
           // Handle error response
         }
       })
-      .catch(error => console.log(error));
-    }
+      .catch((error) => console.log(error));
   };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+
+  //   if (userType === "Admin" && secretKey !== "mamboImechemka") {
+  //     alert("Invalid Admin");
+  //   } else {
+  //     console.log(name, email, password_digest);
+  //     fetch("/users", {
+  //       method: "POST",
+  //       crossDomain: true,
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Accept: "application/json",
+  //         "Access-Control-Allow-Origin": "*",
+  //       },
+  //       body: JSON.stringify({
+  //         name,
+  //         email,
+         
+  //         password_digest,
+  //         userType,
+  //       }),
+  //     })
+  //     .then(response => {
+  //       if (response.ok) {
+  //         navigate("/login");
+  //       } else {
+  //         // Handle error response
+  //       }
+  //     })
+  //     .catch(error => console.log(error));
+  //   }
+  // };
 
   return (
     <div className="auth-wrapper container form-floating mb-3">
@@ -84,7 +121,7 @@ export default function Register() {
             </div>
           ) : null}
 
-          <div className="mb-3">
+          {/* <div className="mb-3">
             <label>First name</label>
             <input
               type="text"
@@ -92,15 +129,15 @@ export default function Register() {
               placeholder="First name"
               onChange={(e) => setFname(e.target.value)}
             />
-          </div>
+          </div> */}
 
           <div className="mb-3">
-            <label>Last name</label>
+            <label>Name</label>
             <input
               type="text"
               className="form-control"
-              placeholder="Last name"
-              onChange={(e) => setLname(e.target.value)}
+              placeholder="name"
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
 

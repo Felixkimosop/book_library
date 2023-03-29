@@ -18,14 +18,14 @@ function App() {
       <NavBar />
       <Routes>
 
-      <Route exact path="/home" element={<HomePage/>} />
+     
 
-        <Route path='/' element={<HomePage/>}/>
+      <Route path='/' element={<HomePage/>}/>
       <Route exact path="/home" element={<BookCollection/>} />
 
       <Route exact path="/login" element={<Login/>} />
       <Route exact path="/register" element={<Register/>} />
-      <Route path="/user" element={<User/>}/>
+      <Route exact path="/user" element={<User/>} />
       <Route exact path="/admin" element={<Admin/>} />
       
 
