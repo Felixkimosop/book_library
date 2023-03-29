@@ -1,5 +1,9 @@
-import React, {  useState } from "react";
-import '../Register.css';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
+
+import "../Register.css";
+
 export default function Register() {
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
@@ -8,13 +12,14 @@ export default function Register() {
   const [userType, setUserType] = useState("");
   const [secretKey, setSecretKey] = useState("");
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
+    e.preventDefault();
+
     if (userType === "Admin" && secretKey !== "mamboImechemka") {
-      e.preventDefault();
       alert("Invalid Admin");
     } else {
-      e.preventDefault();
-
       console.log(fname, lname, email, password);
       fetch("", {
         method: "POST",
@@ -36,6 +41,8 @@ export default function Register() {
         .then((data) => {
           console.log(data, "userRegister");
           if (data.status === "ok") {
+            // Redirect to login page after successful registration
+            navigate("/login");
             alert("Registration Successful");
           } else {
             alert("Something went wrong");
@@ -56,7 +63,7 @@ export default function Register() {
               name="UserType"
               value="User"
               onChange={(e) => setUserType(e.target.value)}
-              // className="col-md-4 "
+              className="px-4 "
             />
             User
             <input
@@ -64,7 +71,7 @@ export default function Register() {
               name="UserType"
               value="Admin"
               onChange={(e) => setUserType(e.target.value)}
-              // className="col-md-4 "
+              className="px-4 "
             />
             Admin
           </div>
@@ -126,7 +133,7 @@ export default function Register() {
             </button>
           </div>
           <p className="forgot-password text-right">
-            Already registered <a href="/sign-in">sign in?</a>
+            Already registered <Link to="/login">sign in?</Link>
           </p>
         </form>
       </div>
