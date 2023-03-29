@@ -6,7 +6,7 @@ function HomePage() {
 
 
   useEffect(() => {
-    fetch('http://localhost:3000/books')
+    fetch('http://localhost:3689/books')
       .then(response => response.json())
       .then(data => setBooks(data))
       .catch(error => console.error(error));
