@@ -140,7 +140,7 @@ function User() {
   useEffect(() => {
     // fetch favorites for current user and set state
     if (currentUser) {
-      fetch(`http://localhost:3000/favorites/${currentUser?.id}`)
+      fetch(`http://localhost:3689/favorites/${currentUser?.id}`)
         .then(response => response.json())
         .then(data => setFavorites(data))
         .catch(error => console.error(error));
@@ -167,37 +167,8 @@ function User() {
   };
 
   return (
-    <div>
-      <div className="slantContainer">
-        <div className="slantedShare">
-          <div className="userDetails">
-            <h2>Welcome {currentUser && currentUser.name}!</h2>
-            <h3>My Collection</h3>
-            {favorites.length > 0 ?
-              <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" style={{ display: "flex", justifyContent: "space-around", alignItems: "center", paddingTop: "10px" }}>
-                {favorites.map(favorite => (
-                  <div className="card col-12 col-sm-6 col-md-4 " key={favorite.id} style={{ width: "250px", border: "2px solid blue" }}>
-                    <div className="card " style={{ display: "flex", textAlign: "center" }} >
-                      <img src={favorite.book.image_url} className="card-img-top " alt={favorite.book.title} />
-                      <div className="card-body">
-                        <h3 className="card-title" style={{ textAlign: "center" }}>{favorite.book.title}</h3>
-                        <p className="card-text" style={{ textAlign: "center" }}>{favorite.book.author}</p>
-                        <button className="btn btn-danger" onClick={() => handleRemoveFavorite(favorite.id)}>Remove from collection</button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              :
-              <p>You have no favorites yet. <Link to="/home">Browse books</Link> to add some.</p>
-            }
-          </div>
-        </div>
-        <div className="slantedDonate">
-          
-        </div>
-      </div>
-    </div>
+    
+<div> </div>
   );
 }
 

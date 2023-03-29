@@ -1,38 +1,61 @@
+
 import React, {  useState } from "react";
+
+
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  const [userType, setUserType] = useState("user");
+  const [loggedIn, setLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
-    console.log(email, password);
-    fetch("", {
-      method: "POST",
-      crossDomain: true,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data, "userRegister");
-        if (data.status === "ok") {
-          alert("login successful");
-          window.localStorage.setItem("token", data.data);
-          window.localStorage.setItem("loggedIn", true);
+
+  const handleLogin = () => {
+    // the fetch request will return only users that match all three parameters,
+    //  and the matchingUsers variable will be an array of users that match. The 
+    //  if statement will check if there are any matching users, and if so, log in the
+    //   first matching user. If there are no matching users, the else statement will 
+    //   trigger the "Invalid login details" alert
+
+
 
           window.location.href = "./userDetails";
+
+
+    fetch(`http://localhost:8978/${userType}s?email=${email}&password=${password}`)
+      .then(response => response.json())
+      .then(data => {
+        const matchingUsers = data?.filter(user => user.email === email && user.password === password );
+        if (matchingUsers.length > 0) {
+          setLoggedIn(true);
+          if (userType === "user") {
+            navigate("/user", { state: { email } });
+          } else if (userType === "admin") {
+            navigate("/admin", { state: { email } });
+          }
+        } else {
+          alert("Invalid login details");
+
         }
+      })
+      .catch(error => {
+        console.error(error);
+        alert("An error occurred while logging in");
       });
-  }
+  };
+  
+  
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    handleLogin();
+  };
+
 
   return (
     <div className="auth-wrapper container">
@@ -59,7 +82,19 @@ export default function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-
+          <div className="mb-3">
+            <label style={{ marginRight: "10px" }}>
+              Login As:
+              <select
+                value={userType}
+                onChange={(e) => setUserType(e.target.value)}
+                style={{ marginLeft: "5px" }}
+              >
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+              </select>
+            </label>
+          </div>
           <div className="mb-3">
             <div className="custom-control custom-checkbox">
               <input
@@ -67,6 +102,7 @@ export default function Login() {
                 className="custom-control-input"
                 id="customCheck1"
               />
+
               <label className="custom-control-label" htmlFor="customCheck1">
                 Remember me
               </label>

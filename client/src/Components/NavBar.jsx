@@ -36,6 +36,11 @@ function NavBar() {
               </Link>
             </li>
             <li className="nav-item">
+              <Link to="/user" className="nav-link ">
+                My Profile
+              </Link>
+            </li>
+            <li className="nav-item">
               <Link to="/register" className="nav-link" aria-expanded="false">
                 Register
               </Link>
