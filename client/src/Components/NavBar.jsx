@@ -35,11 +35,7 @@ function NavBar() {
                 Register
               </Link>
             </li>
-            <li className="nav-item">
-              <Link to="/User" className="nav-link" aria-expanded="false">
-                User
-              </Link>
-            </li>
+            
             <li className="nav-item">
               <Link to="/admin" className="nav-link" aria-expanded="false">
                 Admin Panel

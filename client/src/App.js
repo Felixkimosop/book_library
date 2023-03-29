@@ -5,7 +5,7 @@ import HomePage from "./Components/HomePage"
 import Login from "./Components/Login"
 import Register from "./Components/Register"
 import Admin from './Components/Admin';
-import User from './Components/User';
+
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
       <Route exact path="/login" element={<Login/>} />
       <Route exact path="/register" element={<Register/>} />
       <Route exact path="/admin" element={<Admin/>} />
-      <Route exact path="/User" element={<User/>} />
+      
       
       </Routes>
     </div>
