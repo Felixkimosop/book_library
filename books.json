@@ -1,0 +1,58 @@
+{
+  "books": [
+    {
+      "id": 8,
+      "title": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "genre": "Classic Fiction",
+      "pages": 180,
+      "image_url": "https://images.gr-assets.com/books/1490528560l/4671.jpg",
+      "description": "Set in the Jazz Age, this classic novel tells the story of Jay Gatsby's quest to win back his lost love, Daisy Buchanan, and his tragic downfall."
+    },
+    {
+      "id": 5,
+      "title": "To Kill a Mockingbird",
+      "author": "Harper Lee",
+      "genre": "Classic Fiction",
+      "pages": 324,
+      "image_url": "https://images.gr-assets.com/books/1361975680l/2657.jpg",
+      "description": "Set in the 1930s, this Pulitzer Prize-winning novel tells the story of a young girl named Scout and her father, a lawyer named Atticus Finch, who defends an African American man falsely accused of a crime."
+    },
+    {
+      "id": 10,
+      "title": "The Catcher in the Rye",
+      "author": "J.D. Salinger",
+      "genre": "Classic Fiction",
+      "pages": 224,
+      "image_url": "https://images.gr-assets.com/books/1398034300l/5107.jpg",
+      "description": "This novel follows Holden Caulfield, a teenage boy expelled from his prep school, as he wanders around New York City, grappling with alienation, identity, and loss."
+    },
+    {
+      "id": 1,
+      "title": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "genre": "Classic Fiction",
+      "pages": 189,
+      "image_url": "https://images.gr-assets.com/books/1490528560l/4671.jpg",
+      "description": "Set in the Jazz Age, this classic novel tells the story of Jay Gatsby's quest to win back his lost love, Daisy Buchanan, and his tragic downfall."
+    },
+    {
+      "id": 2,
+      "title": "To Kill a Mockingbird",
+      "author": "Harper Lee",
+      "genre": "Classic Fiction",
+      "pages": 327,
+      "image_url": "https://images.gr-assets.com/books/1361975680l/2657.jpg",
+      "description": "Set in the 1930s, this Pulitzer Prize-winning novel tells the story of a young girl named Scout and her father, a lawyer named Atticus Finch, who defends an African American man falsely accused of a crime."
+    },
+    {
+      "id": 3,
+      "title": "The Catcher in the Rye",
+      "author": "J.D. Salinger",
+      "genre": "Classic Fiction",
+      "pages": 214,
+      "image_url": "https://images.gr-assets.com/books/1398034300l/5107.jpg",
+      "description": "This novel follows Holden Caulfield, a teenage boy expelled from his prep school, as he wanders around New York City, grappling with alienation, identity, and loss."
+    }
+  ]
+}

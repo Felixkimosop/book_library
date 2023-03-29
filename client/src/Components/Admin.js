@@ -7,7 +7,7 @@ function Admin() {
     const [image_url, setImage] = useState()
     const [description, setDescription] = useState()
 useEffect(()=>{
-fetch (" http://localhost:8001/books")
+fetch (" http://localhost:3689/books")
 .then(res => res.json())
 .then(data => setBooks(data))
 },[])
@@ -23,7 +23,7 @@ setTitle('')
 setImage('')
 setDescription('')
 
-fetch ("http://localhost:8001/books",{
+fetch ("http://localhost:3689/books",{
     method: 'POST',
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({
@@ -35,7 +35,7 @@ fetch ("http://localhost:8001/books",{
 }
 
 function handleClick(id){
-    fetch(`http://localhost:8001/books/${id}`,{
+    fetch(`http://localhost:3689/books/${id}`,{
         method: 'DELETE',
         headers: {"Content-Type": "application/json"},
     })
