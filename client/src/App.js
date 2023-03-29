@@ -5,18 +5,18 @@ import HomePage from "./Components/HomePage"
 import Login from "./Components/Login"
 import Register from "./Components/Register"
 import Admin from './Components/Admin';
-
+import User from './Components/User';
 
 function App() {
   return (
     <div className="App">
       <NavBar />
       <Routes>
-      <Route exact path="/" element={<HomePage/>} />
+      <Route exact path="/home" element={<HomePage/>} />
       <Route exact path="/login" element={<Login/>} />
       <Route exact path="/register" element={<Register/>} />
       <Route exact path="/admin" element={<Admin/>} />
-
+      <Route exact path="/User" element={<User/>} />
       
       </Routes>
     </div>
