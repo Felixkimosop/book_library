@@ -3,7 +3,7 @@ import React from 'react'
 
 function HomePageDetails() {
   return (
-<div >
+<div  className="col-12 ">
 <div>
       <div className="slantContainer">
           <div className="slantedShare">
