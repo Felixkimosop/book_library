@@ -1,4 +1,5 @@
 {
+
   "books": [
     {
       "id":8,
@@ -54,5 +55,24 @@
       "image_url": "https://images.gr-assets.com/books/1398034300l/5107.jpg",
       "description": "This novel follows Holden Caulfield, a teenage boy expelled from his prep school, as he wanders around New York City, grappling with alienation, identity, and loss."
     }
-  ]
+  ],
+
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+
 }
