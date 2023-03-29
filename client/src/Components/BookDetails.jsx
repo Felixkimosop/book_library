@@ -9,10 +9,11 @@ function BookDetails() {
     const [book, setBook] = useState(null);
 
     function handleFavourite(id){
+      
         //console.log(book.title)
 }
     useEffect(() => {
-      fetch(`http://localhost:3689/books/${homeId}`)
+      fetch(`/books/${homeId}`)
         .then((response) => response.json())
         .then((data) => setBook(data))
         .catch((error) => console.log(error));

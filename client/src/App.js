@@ -17,14 +17,20 @@ function App() {
     <div className="App">
       <NavBar />
       <Routes>
-        <Route path='/' element={<HomePage/>}/>
+
+     
+
+      <Route path='/' element={<HomePage/>}/>
       <Route exact path="/home" element={<BookCollection/>} />
+
       <Route exact path="/login" element={<Login/>} />
       <Route exact path="/register" element={<Register/>} />
-      <Route path="/user" element={<User/>}/>
+      <Route exact path="/user" element={<User/>} />
       <Route exact path="/admin" element={<Admin/>} />
+      
 
       
+
 
       <Route path="/home/:homeId" element={<BookDetails />} />
 

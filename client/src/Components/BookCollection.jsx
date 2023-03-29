@@ -6,7 +6,7 @@ function BookCollection() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3689/books')
+    fetch('/books')
       .then(response => response.json())
       .then(data => setBooks(data))
       .catch(error => console.error(error));

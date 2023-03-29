@@ -1,56 +1,52 @@
-import React, { useState } from "react";
+
+import React, {  useContext, useState } from "react";
+
+
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
+
 export default function Login() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [password_digest, setPassword] = useState("");
+
   const [userType, setUserType] = useState("user");
   const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    // the fetch request will return only users that match all three parameters,
-    //  and the matchingUsers variable will be an array of users that match. The 
-    //  if statement will check if there are any matching users, and if so, log in the
-    //   first matching user. If there are no matching users, the else statement will 
-    //   trigger the "Invalid login details" alert
-
-
-
-    fetch(`http://localhost:8978/${userType}s?email=${email}&password=${password}`)
-      .then(response => response.json())
-      .then(data => {
-        const matchingUsers = data?.filter(user => user.email === email && user.password === password );
-        if (matchingUsers.length > 0) {
-          setLoggedIn(true);
-          if (userType === "user") {
-            navigate("/user", { state: { email } });
-          } else if (userType === "admin") {
-            navigate("/admin", { state: { email } });
-          }
-        } else {
-          alert("Invalid login details");
-        }
-      })
-      .catch(error => {
-        console.error(error);
-        alert("An error occurred while logging in");
-      });
-  };
   
-  
-
-  const handleSubmit = (event) => {
+  const handleLogin = (event) => {
     event.preventDefault();
-    handleLogin();
+  
+    fetch("/login",{
+      method: "POST",
+      headers:{
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email, password_digest, userType
+      })
+    })
+    .then(response => response.json())
+    .then(response => {
+      if (response.error) {
+        // Show an error message
+        console.log(response.message);
+      } else {
+        // Navigate to the appropriate component
+        if (userType === "admin") {
+          navigate("/admin");
+        } else {
+          navigate("/user");
+        }
+      }
+    });
   };
-
 
   return (
     <div className="auth-wrapper container">
       <div className="auth-inner">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleLogin}>
           <h3>Sign In</h3>
 
           <div className="mb-3">
@@ -105,7 +101,7 @@ export default function Login() {
             </button>
           </div>
           <p className="forgot-password text-right">
-            <Link to="/register">Sign Up</Link>
+          <Link to="/register">Sign Up</Link>
           </p>
         </form>
       </div>
