@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 
 function NavBar() {
+  
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -46,11 +47,11 @@ function NavBar() {
               </Link>
             </li>
             
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link to="/admin" className="nav-link" aria-expanded="false">
                 Admin Panel
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
         <form className="d-flex ml-auto">

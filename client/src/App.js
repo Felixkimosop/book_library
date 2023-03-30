@@ -6,34 +6,28 @@ import Login from "./Components/Login"
 import Register from "./Components/Register"
 import User from "./Components/User"
 import Admin from './Components/Admin';
-
 import BookDetails from "./Components/BookDetails"
 import HomePage from './Components/HomePage';
 
 
 
 function App() {
+
   return (
     <div className="App">
-      <NavBar />
+      
       <Routes>
 
      
 
-      <Route path='/' element={<HomePage/>}/>
-      <Route exact path="/home" element={<BookCollection/>} />
-
+      <Route path='/' element={[<NavBar />,<HomePage/>]}/>
+      <Route exact path="/home" element={[<NavBar />,<BookCollection/>]} />
       <Route exact path="/login" element={<Login/>} />
       <Route exact path="/register" element={<Register/>} />
-      <Route exact path="/user" element={<User/>} />
-      <Route exact path="/admin" element={<Admin/>} />
-      
-
-      
-
-
-      <Route path="/home/:homeId" element={<BookDetails />} />
-
+      <Route exact path="/user" element={[<NavBar />,<User/>]} />
+      <Route exact path="/admin" element={[<NavBar />,<Admin/>]} />
+      <Route path="/home/:homeId" element={[<NavBar />,<BookDetails />]} />
+     
 
       </Routes>
     </div>
