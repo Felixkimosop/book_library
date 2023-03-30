@@ -74,6 +74,27 @@ useEffect(() => {
 
    console.log(user) 
 
+   function handleDownload(id) {
+    fetch(`/books/${id}/download`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then(response => response.blob())
+    .then(blob => {
+      // Create a URL for the blob object and create a link element to trigger the download
+      const url = window.URL.createObjectURL(new Blob([blob]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `book-${id}.pdf`);
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode.removeChild(link);
+    })
+    .catch(error => console.error(error));
+  }
+  
 
   return (
     <div className="admin">
@@ -87,6 +108,7 @@ useEffect(() => {
             <img src={book.image_url}  alt={book.title} />
           
              <button className="btn btn-primary" onClick={() => handleClick(book.id)}> Delete From Library</button> 
+             <button className="btn btn-primary" onClick={() => handleDownload(book.id)}> Download</button> 
           </div>
         
         </div>

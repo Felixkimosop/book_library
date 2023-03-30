@@ -91,7 +91,7 @@ function User() {
   const token =localStorage.getItem('token');
   console.log('token ', token);  
   useEffect(() => {
-    // fetch the current user's data from the API
+    // fetch the current user's danpmta from the API
     fetch('/loggedin' ,{
       method : 'GET',
       headers: {
