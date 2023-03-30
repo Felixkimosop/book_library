@@ -1,15 +1,23 @@
 import {Link,  useNavigate } from 'react-router-dom';
 import HomePageDetails from './HomePageDetails';
+import { useState, useEffect } from 'react';
+
 
 function HomePage() {
   const navigate = useNavigate();
+  const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8001/books')
+    fetch('http://localhost:3689/books')
       .then(response => response.json())
       .then(data => setBooks(data))
       .catch(error => console.error(error));
   }, []);
+
+  const handleClick = () => {
+    navigate('/register');
+  };
+
 
   return (
     <div  className="row  g-12">
