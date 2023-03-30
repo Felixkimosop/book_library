@@ -8,7 +8,7 @@ function HomePage() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3689/books')
+    fetch('/books?limit=6')
       .then(response => response.json())
       .then(data => setBooks(data))
       .catch(error => console.error(error));
@@ -21,8 +21,28 @@ function HomePage() {
 
   return (
     <div  className="row  g-12">
-      <HomePageDetails/>
-      <button onClick={handleClick} col="col-12 col-sm-6 col-md-4"><Link><h2>Register to View Available bo</h2></Link></button>
+      <HomePageDetails handleClick={handleClick}/>
+      <div>
+      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" style={{display:"flex", justifyContent: "space-around", alignItems: "center", paddingTop:"10px"}}>
+      {books.map((book, index) => (
+  <div
+    id="cardHomePage"
+    className="card col-12 col-sm-6 col-md-4"
+    key={book.id}
+  >
+    <div className="card" style={{ display: "flex", textAlign: "center" }}>
+      <img
+        src={book.image_url}
+        className="card-img-top"
+        alt="Novel"
+      />
+    </div>
+    <Link to={`/home/${book.id}`}>Title: {book.title}</Link>
+  </div>
+))}
+      
+    </div>
+      </div>
     </div>
   );
 }
