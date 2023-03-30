@@ -1,46 +1,52 @@
-import React, { useState } from "react";
+
+import React, {  useContext, useState } from "react";
+
+
 import { useNavigate } from "react-router-dom";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+
 
 export default function Login() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [password_digest, setPassword] = useState("");
+
+  const [userType, setUserType] = useState("user");
+  const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    console.log(email, password);
-    fetch("", {
+  
+  const handleLogin = (event) => {
+    event.preventDefault();
+  
+    fetch("/login",{
       method: "POST",
-      crossDomain: true,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
+      headers:{
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        email,
-        password,
-      }),
+        email, password_digest, userType
+      })
     })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data, "userRegister");
-        if (data.status === "ok") {
-          alert("login successful");
-          window.localStorage.setItem("token", data.data);
-          window.localStorage.setItem("loggedIn", true);
-
-          navigate("/"); // useNavigate to navigate to home page
+    .then(response => response.json())
+    .then(response => {
+      if (response.error) {
+        // Show an error message
+        console.log(response.message);
+      } else {
+        // Navigate to the appropriate component
+        if (userType === "admin") {
+          navigate("/admin");
+        } else {
+          navigate("/user");
         }
-      });
-  }
+      }
+    });
+  };
 
   return (
     <div className="auth-wrapper container">
       <div className="auth-inner">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleLogin}>
           <h3>Sign In</h3>
 
           <div className="mb-3">
@@ -62,7 +68,19 @@ export default function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-
+          <div className="mb-3">
+            <label style={{ marginRight: "10px" }}>
+              Login As:
+              <select
+                value={userType}
+                onChange={(e) => setUserType(e.target.value)}
+                style={{ marginLeft: "5px" }}
+              >
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+              </select>
+            </label>
+          </div>
           <div className="mb-3">
             <div className="custom-control custom-checkbox">
               <input
@@ -70,6 +88,7 @@ export default function Login() {
                 className="custom-control-input"
                 id="customCheck1"
               />
+
               <label className="custom-control-label" htmlFor="customCheck1">
                 Remember me
               </label>
@@ -82,7 +101,7 @@ export default function Login() {
             </button>
           </div>
           <p className="forgot-password text-right">
-            <Link to="/register">Sign Up</Link>
+          <Link to="/register">Sign Up</Link>
           </p>
         </form>
       </div>

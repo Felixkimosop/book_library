@@ -1,13 +1,19 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useContext, useState} from "react";
 import "./Admin.css";
+
 
 function Admin() {
     const [books, setBooks] = useState()
     const [title, setTitle] = useState()
     const [image_url, setImage] = useState()
     const [description, setDescription] = useState()
+   
+
 useEffect(()=>{
-fetch (" http://localhost:3689/books")
+
+fetch (" /books")
+
+
 .then(res => res.json())
 .then(data => setBooks(data))
 },[])
@@ -23,7 +29,11 @@ setTitle('')
 setImage('')
 setDescription('')
 
+<<<<<<< HEAD
 fetch ("http://localhost:3689/books",{
+=======
+fetch ("/books",{
+>>>>>>> 521376c7f9b4947102ead51c3e7bf3b19b9b09ce
     method: 'POST',
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({
@@ -35,7 +45,11 @@ fetch ("http://localhost:3689/books",{
 }
 
 function handleClick(id){
+<<<<<<< HEAD
     fetch(`http://localhost:3689/books/${id}`,{
+=======
+    fetch(`/books/${id}`,{
+>>>>>>> 521376c7f9b4947102ead51c3e7bf3b19b9b09ce
         method: 'DELETE',
         headers: {"Content-Type": "application/json"},
     })
