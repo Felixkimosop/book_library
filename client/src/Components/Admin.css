@@ -4,7 +4,7 @@
 
 .admin_header {
   align-items: center;
-  color: red;
+  color: rgb(34, 42, 153);
   justify-content: center;
   text-align: center;
 }
@@ -68,7 +68,7 @@
     width: 98%;
 }
 .form_button{
-    background: #f0c14b;
+    background: #c5c0d1;
     border: 1px solid;
     margin-top: 10px;
     border-color: #a88734 #9c7e31 #846a29;
