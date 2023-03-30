@@ -7,7 +7,8 @@ function Admin() {
     const [title, setTitle] = useState()
     const [image_url, setImage] = useState()
     const [description, setDescription] = useState()
-   
+   const [user, setUser] = useState() 
+   const token =localStorage.getItem('token');
 
 useEffect(()=>{
 
@@ -53,7 +54,25 @@ function handleClick(id){
     .then( document.location.reload())
 }
 
+useEffect(() => {
+  // fetch the current user's data from the API
+  fetch('/logged' ,{
+    method : 'GET',
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+  },
+  })
 
+    .then(response => response.json())
+    .then(data => {setUser(data) 
+      console.log('data', data )
+     })
+
+    .catch(error => console.error(error));
+}, [token]);
+
+   console.log(user) 
 
 
   return (

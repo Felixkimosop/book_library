@@ -87,24 +87,44 @@ import './User.css';
 function User() {
   const [currentUser, setCurrentUser] = useState(null);
   const [books, setBooks] = useState([]);
-
+       
+  const token =localStorage.getItem('token');
+  console.log('token ', token);  
   useEffect(() => {
     // fetch the current user's data from the API
-    fetch('/loggedin')
-      .then(response => response.json())
-      .then(data => setCurrentUser(data))
-      .catch(error => console.error(error));
-  }, []);
+    fetch('/loggedin' ,{
+      method : 'GET',
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+    },
+    })
 
-  useEffect(() => {
-    // fetch the user's collection of books from the API
-    if (currentUser) {
-      fetch(`/users/${currentUser.id}/books`)
-        .then(response => response.json())
-        .then(data => setBooks(data))
-        .catch(error => console.error(error));
-    }
-  }, [currentUser]);
+      .then(response => response.json())
+      .then(data => {setCurrentUser(data) 
+        // console.log('data', data )
+       })
+
+      .catch(error => console.error(error));
+  }, [token]);
+
+     console.log(currentUser?.current_user.books) 
+
+
+  const user= currentUser?.current_user.books.map((book, index) =>{
+    
+    return(
+      <div key = {index}className="user-book-card" >
+        <h2 className="user-book-title">{book.title} </h2>
+        <img src={book.image_url} alt={book.title} className="user-book-image" />
+        <p>{book.description}</p>
+        <button className="user-book-remove-button" onClick={() => handleRemoveFromCollection(book.id)}>
+                Remove from Collection
+              </button>
+      </div>
+    ) 
+      
+  } )
 
   function handleRemoveFromCollection(bookId) {
     // send DELETE request to remove the book from the user's collection
@@ -136,21 +156,13 @@ function User() {
       <nav className="user-navbar">
         <div className="user-avatar">
           <FaUserCircle size={32} />
-          {currentUser && <span>Welcome {currentUser.name}!</span>}
+          {currentUser && <span>Welcome {currentUser?.current_user.name}!</span>}
         </div>
       </nav>
       <div className="user-collection">
         <h1 className="user-collection-title">My Collection</h1>
         <div className="user-book-cards">
-          {books.map(book => (
-            <div key={book.id} className="user-book-card">
-              <img src={book.image_url} alt={book.title} className="user-book-image" />
-              <h2 className="user-book-title">{book.title}</h2>
-              <button className="user-book-remove-button" onClick={() => handleRemoveFromCollection(book.id)}>
-                Remove from Collection
-              </button>
-            </div>
-          ))}
+          {user}
         </div>
       </div>
     </div>

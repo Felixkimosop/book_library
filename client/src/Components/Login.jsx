@@ -33,6 +33,8 @@ export default function Login() {
         // Show an error message
         console.log(response.message);
       } else {
+        localStorage.setItem("token", response.jwt);
+        console.log(response)
         // Navigate to the appropriate component
         if (userType === "admin") {
           navigate("/admin");
