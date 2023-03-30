@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 function BookDetails() {
@@ -7,7 +7,7 @@ function BookDetails() {
 
   const [currentUser, setCurrentUser] = useState(null);
   const [books, setBooks] = useState([]);
-       
+  const navigate = useNavigate();
   const token = localStorage.getItem('token');
   console.log('token ', token);  
   
@@ -49,7 +49,9 @@ function BookDetails() {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ book_id: bookId })
-      });
+      })
+      .then((response)=>response.json())
+      .then(navigate('/user'))
 
       const data = await response.json();
 
