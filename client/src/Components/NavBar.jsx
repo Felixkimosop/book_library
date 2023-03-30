@@ -1,9 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-
-function NavBar() {
-  
+function NavBar({user}) {
+  console.log(user)
+  const navigate = useNavigate();
+  const token =localStorage.getItem('token');
+  // Logout
+  const logout = () =>{
+    sessionStorage.clear();
+    localStorage.clear();
+          navigate("/login");
+  }
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -31,21 +39,31 @@ function NavBar() {
                 List Of Books
               </Link>
             </li>
-            <li className="nav-item">
-              <Link to="/login" className="nav-link ">
-                Login
+            
+              
+             
+             {token? (<> 
+             <li className="nav-item">
+              <Link to='/login'onClick ={logout} className="nav-link" aria-expanded="false">
+               Logout
               </Link>
-            </li>
+            </li></>) : (<><li className="nav-item">
+              <Link to='/login' className="nav-link" aria-expanded="false">
+               Login
+              </Link>
+            </li><li className="nav-item">
+              <Link to="/register" className="nav-link" aria-expanded="false">
+                Register
+              </Link>
+            </li></>) }
+
+            
             {/* <li className="nav-item">
               <Link to="/user" className="nav-link ">
                 My Profile
               </Link>
             </li> */}
-            <li className="nav-item">
-              <Link to="/register" className="nav-link" aria-expanded="false">
-                Register
-              </Link>
-            </li>
+            
             
             {/* <li className="nav-item">
               <Link to="/admin" className="nav-link" aria-expanded="false">
