@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
-  const [password_digest, setPassword] = useState("");
+  const [password, setPassword] = useState("");
 
   const [userType, setUserType] = useState("user");
   const [loggedIn, setLoggedIn] = useState(false);
@@ -24,7 +24,7 @@ export default function Login() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        email, password_digest, userType
+        email, password, userType
       })
     })
     .then(response => response.json())
