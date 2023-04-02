@@ -23,7 +23,7 @@ function BookCollection() {
     setSearchTerm(event.target.value);
   };
 
-  const filteredBooks = books.filter(book => book.title.toLowerCase().includes(searchTerm.toLowerCase()));
+  const filteredBooks = Array.isArray(books) ? books.filter(book => book.title.toLowerCase().includes(searchTerm.toLowerCase())):[];
 
   return (
     <div>
