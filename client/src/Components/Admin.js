@@ -284,12 +284,7 @@ function Admin() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ title, image_url, description }),
 
-    const [books, setBooks] = useState()
-    const [title, setTitle] = useState()
-    const [image_url, setImage] = useState()
-    const [description, setDescription] = useState()
-   const [user, setUser] = useState() 
-   const token =localStorage.getItem('token');
+  
 
 useEffect(()=>{
 
