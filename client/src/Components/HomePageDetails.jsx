@@ -39,4 +39,3 @@ function HomePageDetails({handleClick}) {
 
 
 export default HomePageDetails
-
