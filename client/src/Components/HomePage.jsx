@@ -8,7 +8,7 @@ function HomePage() {
   const [books, setBooks] = useState([]);
   
   useEffect(() => {
-    fetch('/books')
+    fetch('/home')
       .then(response => response.json())
       .then(data => setBooks(data.slice(0, 6))) // This will limit the books to the first 6 items.
       .catch(error => console.error(error));

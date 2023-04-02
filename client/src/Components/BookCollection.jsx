@@ -4,13 +4,20 @@ import { Link } from 'react-router-dom';
 function BookCollection() {
   const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const token =localStorage.getItem('token');
 
   useEffect(() => {
-    fetch('/books')
+    fetch('/books',{
+      method:'GET',
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+    },
+    })
       .then(response => response.json())
       .then(data => setBooks(data))
       .catch(error => console.error(error));
-  }, []);
+  }, [token]);
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
