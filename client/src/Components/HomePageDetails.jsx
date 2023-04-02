@@ -16,15 +16,6 @@ function HomePageDetails({handleClick}) {
         <p>As a user, you will get instant access to a library of over a thousand e-book links of where you can buy any book that you want. This library contains a lot of world known bestsellers</p>
        
         
-<div  className="col-12 ">
-<div>
-      <div className="slantContainer">
-          <div className="slantedShare">
-              container for left div
-          </div>
-          <div className="slantedDonate">
-              container for right div
-          </div>
       </div>
       <div className="slantedDonate">
         <img
@@ -48,4 +39,3 @@ function HomePageDetails({handleClick}) {
 
 
 export default HomePageDetails
-
