@@ -37,6 +37,12 @@ function NavBar({user}) {
             <li className="nav-item">
               <Link to="/home" className="nav-link " aria-current="page">
                 List Of Books
+
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/login" className="nav-link ">
+                Login
               </Link>
             </li>
             

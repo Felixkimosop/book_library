@@ -5,10 +5,11 @@ import { useState, useEffect } from 'react';
 const limit = 6;
 function HomePage() {
   const navigate = useNavigate();
+
   const [books, setBooks] = useState([]);
   
   useEffect(() => {
-    fetch('/books')
+    fetch('/home')
       .then(response => response.json())
       .then(data => setBooks(data.slice(0, 6))) // This will limit the books to the first 6 items.
       .catch(error => console.error(error));
@@ -20,8 +21,15 @@ function HomePage() {
   };
 
 
+
+  const handleClick = () => {
+    navigate('/register');
+  };
+
+
   return (
     <div  className="row  g-12">
+
       <HomePageDetails handleClick={handleClick}/>
       <div>
       <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" style={{display:"flex", justifyContent: "space-around", alignItems: "center", paddingTop:"10px"}}>
@@ -44,6 +52,9 @@ function HomePage() {
       
     </div>
       </div>
+
+      <HomePageDetails/>
+      <button onClick={handleClick} col="col-12 col-sm-6 col-md-4"><Link><h2>Register to View Available boks</h2></Link></button>
     </div>
   );
 }

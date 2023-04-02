@@ -37,7 +37,7 @@ function User() {
      console.log(currentUser?.current_user.books) 
 
 
-  const user= currentUser?.current_user.books.map((book, index) =>{
+  const user= currentUser?.current_user.books?.map((book, index) =>{
     
     return(
 

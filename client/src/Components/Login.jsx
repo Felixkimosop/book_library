@@ -1,5 +1,6 @@
 
 import React, {  useContext, useState } from "react";
+import Swal from 'sweetalert';
 
 
 import { useNavigate } from "react-router-dom";
@@ -32,10 +33,18 @@ export default function Login() {
       if (response.error) {
         // Show an error message
         console.log(response.message);
+        
       } else {
         localStorage.setItem("token", response.jwt);
         console.log(response)
-        // Navigate to the appropriate component
+         // Navigate to the appropriate component
+        Swal({
+          title: "Success!",
+          text: "LoggedIn successfully.",
+          icon: "success",
+          button: "OK",
+        });
+       
         if (userType === "admin") {
           navigate("/admin");
         } else {
